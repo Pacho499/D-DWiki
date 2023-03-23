@@ -1,33 +1,71 @@
 import NavBar from '../components/NavBar';
 import HomeCard from '../components/HomeCard';
-import {HomeCardsDatas} from '../datas/HomeCardDatas';
+import {HomeCardsDatas, homeMainText} from '../datas/HomeCardDatas';
+import { useAppSelector } from '..';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { translate } from '../utils/functions';
+import Loader from '../components/Loader';
 const Home = () => {
+
+  const language = useAppSelector((state) => state.pageSettingsReducer.language)
+  const [loading, setLoading] = useState(false)
+  const [homeText, setHomeText] = useState({ 
+    firstParagraph:homeMainText.firstParagraph,
+    secondParagraph : homeMainText.secondParagraph,
+    welcome: homeMainText.welcome,
+    title: homeMainText.title,
+    secondTitle: homeMainText.secondTitle
+  })
+
+  useEffect(() => {
+    
+    const translateText = async() => {
+      if(language !== 'en'){
+        setLoading(true)
+        const first = await translate(homeMainText.firstParagraph, language)
+        const second = await translate(homeMainText.secondParagraph, language)
+        const welcome = await translate(homeMainText.welcome, language)
+        const title = await translate(homeMainText.title, language)
+        const secondTitle = await translate(homeMainText.secondTitle, language)
+        setHomeText({...homeText, 
+          firstParagraph:first, 
+          secondParagraph:second, 
+          welcome,
+          title,
+          secondTitle,
+        })
+        setLoading(false)
+      }
+    }
+    translateText()
+  }, [language])
+
   return (
     <div className='min-h-screen'>
       <NavBar />
+      {loading ? 
+      <div>
+        <Loader/>
+      </div>
+      : 
       <div className='flex flex-col items-center'>
         <div className='w-8/12 flex flex-col items-center'>
-          <h1 className='text-xl text-white my-6'>Welcome Adventurers</h1>
+          <h1 className='text-xl text-white my-6'>{homeText.title}</h1>
           <div className='bg-main w-6/12 p-2 rounded-lg text-center text-base'>
             <p>
-              Hello adventurers, within this site you will find everything that
-              can help you in your intrepid campaigns from information on
-              classes and races to spells.
+              {homeText.firstParagraph}
             </p>
             <br />
             <p>
-              And it doesn't end here, in fact you will also have the
-              possibility to register and consult campaigns created by players
-              to get ideas or play them directly, also giving the possibility to
-              describe your own campaign so as to be able to provide old and new
-              players with fantastic stories and adventures.
+              {homeText.secondParagraph}
             </p>
             <br />
-            <p>Welcome to the D&D fanWiki</p>
+            <p>{homeText.welcome}</p>
           </div>
         </div>
         <div className='w-8/12'>
-          <h1 className='text-xl text-white my-6 text-center'>Choose what you need</h1>
+          <h1 className='text-xl text-white my-6 text-center'>{homeText.secondTitle}</h1>
           <div className='flex justify-between'>
             {HomeCardsDatas.map((data) => {
               return (
@@ -36,7 +74,7 @@ const Home = () => {
             })}
           </div>
         </div>
-      </div>
+      </div>}
     </div>
   );
 };
