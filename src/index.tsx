@@ -7,9 +7,11 @@ import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import rootReducer from './store';
-
+import { devToolsEnhancer } from 'redux-devtools-extension';
 const store = configureStore({
   reducer:rootReducer,
+  devTools:false,
+  enhancers:[devToolsEnhancer({})]
 })
 
 export type RootState = ReturnType<typeof store.getState>
