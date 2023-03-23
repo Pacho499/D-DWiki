@@ -27,7 +27,7 @@ const Home = () => {
           </div>
         </div>
         <div className='w-8/12'>
-          <h1 className='text-xl text-white my-6'>Choose what you need</h1>
+          <h1 className='text-xl text-white my-6 text-center'>Choose what you need</h1>
           <div className='flex justify-between'>
             {HomeCardsDatas.map((data) => {
               return (

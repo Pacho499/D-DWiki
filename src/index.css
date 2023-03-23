@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Shantell+Sans:wght@300&display=swap');
+*{
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
 body {
   margin: 0;
   font-family: 'Libre Baskerville', 'Segoe UI', 'Roboto', 'Oxygen',
