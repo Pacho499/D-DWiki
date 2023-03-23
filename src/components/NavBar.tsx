@@ -2,11 +2,18 @@ import logo from '../images/logo.jpg'
 import { faBook, faMapLocationDot, faPen, faUser, faLanguage } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState } from 'react'
+import { changeLanguace } from '../store/actions/handlePageSettings'
+import { useAppDispatch } from '..'
 
 const NavBar = () => {
 
     const [translateMenu, setTranslateMenu] = useState(false)
+    const dispatch = useAppDispatch()
 
+    const setNewLanguage = (language:string) => {
+        dispatch(changeLanguace(language))
+        setTranslateMenu(false)
+    }
     return (
         <div className="flex justify-around h-[10vh] bg-main">
             <div className='flex items-center'>
@@ -18,10 +25,10 @@ const NavBar = () => {
                    <FontAwesomeIcon className='p-3' icon={faLanguage} size='2x' onClick={() => setTranslateMenu(!translateMenu)}/> 
                     {translateMenu && 
                         <ul className=' bg-buttons py-2 rounded-md absolute text-center'>
-                            <li className='px-4 py-2 hover:bg-buttonsHover'>IT</li>
-                            <li className='px-4 py-2 hover:bg-buttonsHover'>EN</li>
-                            <li className='px-4 py-2 hover:bg-buttonsHover'>ES</li>
-                            <li className='px-4 py-2 hover:bg-buttonsHover'>FR</li>
+                            <li onClick={() => {setNewLanguage('it')}} className='px-4 py-2 hover:bg-buttonsHover'>IT</li>
+                            <li onClick={() => {setNewLanguage('en')}} className='px-4 py-2 hover:bg-buttonsHover'>EN</li>
+                            <li onClick={() => {setNewLanguage('es')}} className='px-4 py-2 hover:bg-buttonsHover'>ES</li>
+                            <li onClick={() => setNewLanguage('fr')} className='px-4 py-2 hover:bg-buttonsHover'>FR</li>
                         </ul>
                     }
                 </div>
