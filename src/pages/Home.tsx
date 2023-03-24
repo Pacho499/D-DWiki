@@ -45,8 +45,9 @@ const Home = () => {
     <div className='min-h-screen'>
       <NavBar />
       {loading ? 
-      <div>
+      <div className='flex flex-col justify-center items-center h-[90vh]'>
         <Loader/>
+        <p className='text-white text-xl font-bold'>We are Loading the new Language</p>
       </div>
       : 
       <div className='flex flex-col items-center'>

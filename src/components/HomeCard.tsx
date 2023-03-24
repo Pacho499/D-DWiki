@@ -20,7 +20,10 @@ const HomeCard: React.FC<HomeCardData> = ({title, description}) => {
       <div className='w-[70%] flex m-auto flex-col '>
         <h1 className='text-lg py-4 text-center'>{title}</h1>
         <p className='text-base mb-20'>{descriptionTranslate}</p>
-        <p className='absolute bottom-0 left-10 p-2 my-4 bg-buttons rounded-lg text-center hover:bg-buttonsHover'>GO {title}</p>
+        <div className='w-[70%] m-auto p-2 absolute bottom-3 bg-buttons rounded-lg text-center hover:bg-buttonsHover'>
+          <p>GO {title}</p>
+        </div>
+        
       </div>
     </div>
   );
