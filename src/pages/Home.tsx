@@ -48,7 +48,7 @@ const Home = () => {
         <p className='text-white text-xl font-bold'>We are Loading the new Language</p>
       </div>
       : 
-      <div className='flex flex-col items-center'>
+      <div className='flex flex-col items-center pt-[10vh]'>
         <div className='w-8/12 flex flex-col items-center'>
           <h1 className='text-xl text-white my-6'>{homeText.title}</h1>
           <div className='bg-main w-6/12 p-2 rounded-lg text-center text-base'>
