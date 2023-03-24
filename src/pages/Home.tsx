@@ -1,4 +1,3 @@
-import NavBar from '../components/NavBar';
 import HomeCard from '../components/HomeCard';
 import {HomeCardsDatas, homeMainText} from '../datas/HomeCardDatas';
 import { useAppSelector } from '..';
@@ -43,7 +42,6 @@ const Home = () => {
 
   return (
     <div className='min-h-screen'>
-      <NavBar />
       {loading ? 
       <div className='flex flex-col justify-center items-center h-[90vh]'>
         <Loader/>

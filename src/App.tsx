@@ -1,5 +1,8 @@
 import Home from './pages/Home';
+import Wiki from './pages/Wiki';
+import NavBar from './components/NavBar';
 import background from './images/background.jpg'
+import { Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
@@ -11,7 +14,11 @@ function App() {
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
       }}>
-      <Home/>
+      <NavBar/>
+      <Routes>
+        <Route path='/' element={<Home/>}/>
+        <Route path='/wiki' element={<Wiki/>}/>
+      </Routes>
     </div>
   );
 }
