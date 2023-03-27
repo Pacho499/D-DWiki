@@ -1,4 +1,12 @@
-import { classType } from "./apiTypes/classType"
+import { topicType } from "./apiTypes/classType"
+
+export interface wikiDetailDatas{
+    [sectionName:string] : {
+        call: string,
+        textData:Array<CardDatas>,
+    }
+    
+}
 
 export interface CardDatas{
     title:string,
@@ -14,6 +22,6 @@ export interface HomeMainDatas{
 }
 
 export interface LeftFilterDatas{
-    classes: Array<classType>
+    topics: Array<topicType>
 }
 
