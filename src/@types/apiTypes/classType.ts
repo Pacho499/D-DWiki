@@ -1,4 +1,4 @@
-export interface classType{
+export interface topicType{
     index: string,
     name: string,
     url: string
@@ -6,5 +6,5 @@ export interface classType{
 
 export interface classApiResponse{
     count: number,
-    results : Array<classType>
+    results : Array<topicType>
 }
