@@ -7,13 +7,16 @@ import {WikiDatas} from '../datas/WikiDetaliDatas';
 const WikiDetail = () => {
   const [showFilter, setShowFilter] = useState(false);
   const [topics, setTopics] = useState<Array<topicType>>([]);
-  const location = useLocation()
-  const wikiSection = location.state
-  const texts =  WikiDatas?.[wikiSection].textData;
+
+  const location = useLocation();
+  const wikiSection = location.state;
+
+  const texts = WikiDatas?.[wikiSection].textData;
   useEffect(() => {
-    if(WikiDatas?.[wikiSection].call !== ''){
+    if (WikiDatas?.[wikiSection].call !== '') {
       const fetchTopics = async () => {
-        const data = await axios.get(`https://www.dnd5eapi.co/api/${WikiDatas?.[wikiSection].call}`,
+        const data = await axios.get(
+          `https://www.dnd5eapi.co/api/${WikiDatas?.[wikiSection].call}`,
         );
         setTopics(data.data.results);
         setShowFilter(true);
@@ -24,8 +27,8 @@ const WikiDetail = () => {
     // const fetchDatas = async () => {
     //     console.log('topics:',topics)
     //     for(let topic in topics){
-          
-    //        const data = await axios.get(`https://www.dnd5eapi.co/api/classes/${topics[topic].index}`) 
+
+    //        const data = await axios.get(`https://www.dnd5eapi.co/api/classes/${topics[topic].index}`)
     //        console.log('data:',data.data)
     //     }
     // }
