@@ -11,7 +11,7 @@ const Wiki = () => {
                     <div className="bg-main text-center rounded-md">
                         <h1 className="font-bold text-lg my-6">{data.title}</h1>
                         <p className="w-[80%] h-48 m-auto">{data.description}</p>
-                        <Link to={`/Wiki/${data.title}`}>
+                        <Link state={data.title} to={`/Wiki/${data.title}`}>
                             <p className="p-1 bg-buttons hover:bg-buttonsHover w-1/2 m-auto rounded-lg mb-4">{`go ${data.title}`}</p>
                         </Link>
                         

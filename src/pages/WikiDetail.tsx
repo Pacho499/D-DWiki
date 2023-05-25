@@ -2,34 +2,34 @@ import LeftFilter from '../components/LeftFilter';
 import axios from 'axios';
 import {useEffect, useState} from 'react';
 import {topicType} from '../@types/apiTypes/classType';
-import {useParams} from 'react-router-dom';
+import {useLocation} from 'react-router-dom';
 import {WikiDatas} from '../datas/WikiDetaliDatas';
 const WikiDetail = () => {
   const [showFilter, setShowFilter] = useState(false);
   const [topics, setTopics] = useState<Array<topicType>>([]);
-  const {wikiSection} = useParams();
-  const texts =
-    wikiSection !== undefined ? WikiDatas?.[wikiSection].textData : null;
+  const location = useLocation()
+  const wikiSection = location.state
+  const texts =  WikiDatas?.[wikiSection].textData;
   useEffect(() => {
-    const fetchTopics = async () => {
-      const data = await axios.get(`https://www.dnd5eapi.co/api/${
-          wikiSection !== undefined ? WikiDatas?.[wikiSection].call : ''
-        }`,
-      );
-      if (wikiSection !== undefined && WikiDatas?.[wikiSection].call !== '') {
+    if(WikiDatas?.[wikiSection].call !== ''){
+      const fetchTopics = async () => {
+        const data = await axios.get(`https://www.dnd5eapi.co/api/${WikiDatas?.[wikiSection].call}`,
+        );
         setTopics(data.data.results);
         setShowFilter(true);
-      }
-    };
-    const fetchDatas = async () => {
-        console.log(topics)
-        for(let topic in topics){
-           const data = await axios.get(`https://www.dnd5eapi.co/api/classes/${topics[topic].index}`) 
-           console.log(data.data)
-        }
+      };
+      fetchTopics();
     }
-    fetchTopics();
-    fetchDatas()
+
+    // const fetchDatas = async () => {
+    //     console.log('topics:',topics)
+    //     for(let topic in topics){
+          
+    //        const data = await axios.get(`https://www.dnd5eapi.co/api/classes/${topics[topic].index}`) 
+    //        console.log('data:',data.data)
+    //     }
+    // }
+    // fetchDatas()
   }, []);
   return (
     <div>

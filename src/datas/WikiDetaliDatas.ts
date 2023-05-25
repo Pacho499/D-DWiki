@@ -92,4 +92,11 @@ export const WikiDatas: wikiDetailDatas = {
             }
         ]
     },
+    'PC Traits' : {
+        call:'',
+        textData:[
+            
+        ]
+    },
+
 }
