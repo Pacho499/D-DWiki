@@ -17,7 +17,6 @@ const NavBar = () => {
   const dispatch = useAppDispatch();
   const location = useLocation()
   const path = location.pathname
-  console.log(path)
 
   const setNewLanguage = (language: string) => {
     dispatch(changeLanguace(language));
