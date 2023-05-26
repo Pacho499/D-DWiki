@@ -10,16 +10,16 @@ const WikiDetail = () => {
   const location = useLocation()
   const wikiSection = location.state
   const texts =  WikiDatas?.[wikiSection].textData;
+  const calls = WikiDatas?.[wikiSection].call
   useEffect(() => {
-    if(WikiDatas?.[wikiSection].call.length > 0){
-      const calls = WikiDatas?.[wikiSection].call
+    if(calls.length > 0){
       const fetchTopics = async () => {
+        let data:Array<topicType> = []
         for (let call in calls){
-          
+          const response = await axios.get(`https://www.dnd5eapi.co/api/${calls[call]}`);
+          data = data.concat(response.data.results)
         }
-        const data = await axios.get(`https://www.dnd5eapi.co/api/${WikiDatas?.[wikiSection].call[1]}`,
-        );
-        setTopics(data.data.results);
+        setTopics(data)
         setShowFilter(true);
       };
       fetchTopics();
@@ -34,7 +34,7 @@ const WikiDetail = () => {
     //     }
     // }
     // fetchDatas()
-  }, []);
+  }, [calls]);
   return (
     <div>
       {showFilter && <LeftFilter topics={topics} />}
