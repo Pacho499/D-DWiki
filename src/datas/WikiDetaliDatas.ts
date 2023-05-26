@@ -2,7 +2,7 @@ import { wikiDetailDatas } from "../@types/MyTypes";
 
 export const WikiDatas: wikiDetailDatas = {
     'Game Rules' : {
-        call:['rules','rule-sections','conditions', 'damage-types', ],
+        call:['rule-sections','conditions', 'damage-types', ],
         textData:[]
     },
     'Spells' : {
