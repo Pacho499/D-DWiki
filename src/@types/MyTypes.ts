@@ -2,7 +2,7 @@ import { topicType } from "./apiTypes/classType"
 
 export interface wikiDetailDatas{
     [sectionName:string] : {
-        call: string,
+        call: Array<string>,
         textData:Array<CardDatas>,
     }
     

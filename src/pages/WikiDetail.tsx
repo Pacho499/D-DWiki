@@ -11,9 +11,13 @@ const WikiDetail = () => {
   const wikiSection = location.state
   const texts =  WikiDatas?.[wikiSection].textData;
   useEffect(() => {
-    if(WikiDatas?.[wikiSection].call !== ''){
+    if(WikiDatas?.[wikiSection].call.length > 0){
+      const calls = WikiDatas?.[wikiSection].call
       const fetchTopics = async () => {
-        const data = await axios.get(`https://www.dnd5eapi.co/api/${WikiDatas?.[wikiSection].call}`,
+        for (let call in calls){
+          
+        }
+        const data = await axios.get(`https://www.dnd5eapi.co/api/${WikiDatas?.[wikiSection].call[1]}`,
         );
         setTopics(data.data.results);
         setShowFilter(true);

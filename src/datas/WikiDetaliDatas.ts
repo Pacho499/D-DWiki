@@ -1,8 +1,12 @@
 import { wikiDetailDatas } from "../@types/MyTypes";
 
 export const WikiDatas: wikiDetailDatas = {
+    'Game Rules' : {
+        call:['conditions/', 'damage-types/'],
+        textData:[]
+    },
     'Spells' : {
-        call:'classes',
+        call:['classes'],
         textData:[
             {
                 title:'What is a spell',
@@ -15,12 +19,8 @@ export const WikiDatas: wikiDetailDatas = {
         ]
         
     },
-    'Game Rules' : {
-        call:'',
-        textData:[]
-    },
     'Items' : {
-        call:'equipment-categories',
+        call:['equipment-categories'],
         textData:[
             {
                 title:'Equipment',
@@ -29,7 +29,7 @@ export const WikiDatas: wikiDetailDatas = {
         ]
     },
     'Monsters' : {
-        call:'',
+        call:[''],
         textData:[
             {
                 title:'What are Monsters',
@@ -38,7 +38,7 @@ export const WikiDatas: wikiDetailDatas = {
         ]
     },
     'PC Start'  : {
-        call:'',
+        call:[''],
         textData:[
             {
                 title:'Whats is a PC',
@@ -67,7 +67,7 @@ export const WikiDatas: wikiDetailDatas = {
         ]
     },
     'PC Races': {
-        call:'races',
+        call:['races'],
         textData:[
             {
                 title : 'What are races',
@@ -80,7 +80,7 @@ export const WikiDatas: wikiDetailDatas = {
         ]
     },
     'PC Classes' : {
-        call:'classes',
+        call:['classes'],
         textData:[
             {
                 title : 'What are classes',
@@ -93,7 +93,7 @@ export const WikiDatas: wikiDetailDatas = {
         ]
     },
     'PC Traits' : {
-        call:'',
+        call:[''],
         textData:[
             
         ]
