@@ -54,7 +54,6 @@ const WikiDetail = () => {
       )
     })
   }
-
   return (
     <div>
       {loading ? <Loader/> : 
