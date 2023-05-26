@@ -1,12 +1,11 @@
 import LeftFilter from '../components/LeftFilter';
 import axios from 'axios';
 import {useEffect, useState} from 'react';
-import {topicType} from '../@types/apiTypes/classType';
+import { TopicsData } from '../@types/MyTypes';
 import {useLocation} from 'react-router-dom';
 import {WikiDatas} from '../datas/WikiDetaliDatas';
 const WikiDetail = () => {
-  const [showFilter, setShowFilter] = useState(false);
-  const [topics, setTopics] = useState<Array<topicType>>([]);
+  const [topics, setTopics] = useState<TopicsData>({});
   const location = useLocation()
   const wikiSection = location.state
   const texts =  WikiDatas?.[wikiSection].textData;
@@ -14,13 +13,14 @@ const WikiDetail = () => {
   useEffect(() => {
     if(calls.length > 0){
       const fetchTopics = async () => {
-        let data:Array<topicType> = []
+        let data: TopicsData = {}
         for (let call in calls){
           const response = await axios.get(`https://www.dnd5eapi.co/api/${calls[call]}`);
-          data = data.concat(response.data.results)
+          console.log(calls[call])
+          const title = calls[call]
+          data[title] =  response.data.results
         }
         setTopics(data)
-        setShowFilter(true);
       };
       fetchTopics();
     }
@@ -34,10 +34,13 @@ const WikiDetail = () => {
     //     }
     // }
     // fetchDatas()
-  }, [calls]);
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div>
-      {showFilter && <LeftFilter topics={topics} />}
+      <LeftFilter topics={topics} />
       <div className='ml-40 pt-[10vh] min-h-[100vh]'>
         {texts?.map((text) => {
           return (

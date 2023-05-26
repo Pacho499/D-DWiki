@@ -21,7 +21,11 @@ export interface HomeMainDatas{
     secondTitle:string
 }
 
+export interface TopicsData{
+    [topic:string] : Array<topicType>
+}
+
 export interface LeftFilterDatas{
-    topics: Array<topicType>
+    topics: TopicsData
 }
 
